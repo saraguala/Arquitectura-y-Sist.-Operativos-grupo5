@@ -1,0 +1,54 @@
+Ejercitación contenedores:
+
+1- docker run --name nginx
+
+2- docker run -d nginx (para crearlo)
+-  docker ps -a (muestra los contenedores y en el estado en que están)
+-  docker stop (id o nombre contendor) para stopearlo  
+-  docker rm (id o nombre contenedor) para eliminarlo
+
+3- docker run --name nginx
+
+4- docker run -d -p 80:80 nginx
+
+5- docker run -d nginx
+-  docker exec -it (id o nombre contenedor) bash
+
+6- docker run -d nginx
+-  vim index.html ("hola mundo")
+-  docker cp index.html (id o nombre contenedor):/usr/share/nginx/html
+-  vim Dockerfile (1-FROM nginx 2-COPY index.html /usr/share/nginx/html)
+
+Ejercitación imagenes:
+
+1-  docker image ls
+
+2-  docker rmi (id o nombre de la imagen)
+
+3-  docker run -d hello-world
+-   no se puede borrar la imagen sin antes eliminar el contenedor que está usando la imagen.
+-   docker rm -f (id o nombre del contenedor)
+-   docker rmi (id o nombre de la imagen)
+
+Ejercitación Dockerfile:
+
+1-  vim Dockerfile (1- FROM:nginx 2- COPY: index.html /usr/share/nginx/html
+-   vim index.html ("Hola mundo!!")
+-   docker build -t v1 .
+-   docker run -d -p 80:80 v1
+-   docker cp index.html (id o nombre del contenedor):/usr/share/nginx/html
+
+2-  vim indexV2.html ("Hola mundo, ¿como estan todos?")
+-   vim Dockerfile (1- FROM:nginx 2- COPY indexV2.html /usr/share/nginx/html
+-   docker build -t v2 .
+-   docker run -d -p 80:80 v2
+-   docker cp indexV2.html (id o nombre del contenedor):/usr/share/nginx/html
+
+Ejercitación Volumen:
+
+1-  docker run -d -p 80:80 -v (ruta de la carpeta con el html):/usr/share/nginx/html nginx
+
+2-  docker volume create volumen1
+-   docker run -d -p 80:80 -v volumen1:/usr/share/nginx/html nginx
+-   La diferencia es se le puede dar un nombre al volume y el volume del host se crea automáticamente, pero es más dificil encontrar.
+-   La ventaja es que tenemos un manejo mas rapido y sencillo 
