@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: apache
+  namespace: grupo5
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: apache
+  template:
+    metadata:
+      labels:
+        app: apache
+    spec:
+      containers:
+            - name: apache-v1
+              image: juani1997/apache-v1:version1.0
+              ports:
+                  - containerPort: 8080
